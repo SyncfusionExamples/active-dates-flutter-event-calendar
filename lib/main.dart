@@ -23,8 +23,8 @@ class DateSelectionCalendar extends StatefulWidget {
 
 class DateSelectionCalendarState
     extends State<DateSelectionCalendar> {
-  List<DateTime> _blackoutDateCollection;
-  List<DateTime> _activeDates;
+  List<DateTime>? _blackoutDateCollection= <DateTime>[];
+  List<DateTime>? _activeDates;
 
   @override
   void initState() {
@@ -40,7 +40,6 @@ class DateSelectionCalendarState
       today.add(Duration(days: 30)),
       today.add(Duration(days: 35))
     ];
-    _blackoutDateCollection = <DateTime>[];
     super.initState();
   }
 
@@ -66,15 +65,15 @@ class DateSelectionCalendarState
         .visibleDates[viewChangedDetails.visibleDates.length - 1];
     List<DateTime> _blackDates = <DateTime>[];
     for (date = startDate;
-        date.isBefore(endDate) || date == endDate;
-        date = date.add(const Duration(days: 1))) {
-      if (_activeDates.contains(date)) {
+    date.isBefore(endDate) || date == endDate;
+    date = date.add(const Duration(days: 1))) {
+      if (_activeDates!.contains(date)) {
         continue;
       }
 
       _blackDates.add(date);
     }
-    SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
+    SchedulerBinding.instance!.addPostFrameCallback((timeStamp) {
       setState(() {
         _blackoutDateCollection = _blackDates;
       });
