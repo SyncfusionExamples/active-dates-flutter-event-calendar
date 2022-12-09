@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
-void main() => runApp(DateSelection());
+void main() => runApp(const DateSelection());
 
 class DateSelection extends StatelessWidget {
+  const DateSelection({super.key});
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: DateSelectionCalendar(),
     );
@@ -16,6 +18,8 @@ class DateSelection extends StatelessWidget {
 }
 
 class DateSelectionCalendar extends StatefulWidget {
+  const DateSelectionCalendar({super.key});
+
   @override
   DateSelectionCalendarState createState() =>
       DateSelectionCalendarState();
@@ -32,13 +36,13 @@ class DateSelectionCalendarState
     today = DateTime(today.year, today.month, today.day);
     _activeDates = [
       today,
-      today.add(Duration(days: 5)),
-      today.add(Duration(days: 10)),
-      today.add(Duration(days: 15)),
-      today.add(Duration(days: 20)),
-      today.add(Duration(days: 25)),
-      today.add(Duration(days: 30)),
-      today.add(Duration(days: 35))
+      today.add(const Duration(days: 5)),
+      today.add(const Duration(days: 10)),
+      today.add(const Duration(days: 15)),
+      today.add(const Duration(days: 20)),
+      today.add(const Duration(days: 25)),
+      today.add(const Duration(days: 30)),
+      today.add(const Duration(days: 35))
     ];
     super.initState();
   }
@@ -50,7 +54,7 @@ class DateSelectionCalendarState
         child: SfCalendar(
           view: CalendarView.month,
           blackoutDates: _blackoutDateCollection,
-          blackoutDatesTextStyle: TextStyle(
+          blackoutDatesTextStyle: const TextStyle(
               color: Colors.grey, decoration: TextDecoration.lineThrough),
           onViewChanged: viewChanged,
         ),
